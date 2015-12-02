@@ -63,9 +63,51 @@ As such, the network output is a soft attention over a constant set of probabili
 
 The results in this paper were very promising; however, many factors were changed at the same time. So, we constructed and ran experiments to isolate where the benefits came from.
 
+{% highlight python lineanchors %}
+tn.HyperparameterNode(
+    "model",
+    tn.SequentialNode(
+        "seq",
+        [tn.InputNode("x", shape=(None, 28 * 28)),
+         tn.DenseNode("fc1"),
+         tn.DropoutNode("do1"),
+         tn.ReLUNode("relu1"),
+         tn.DenseNode("fc2"),
+         tn.DropoutNode("do2"),
+         tn.ReLUNode("relu2"),
+         tn.DenseNode("fc3", num_units=10),
+         tn.SoftmaxNode("pred")]),
+    num_units=512,
+    dropout_probability=0.5,
+    inits=[treeano.inits.XavierNormalInit()])
+{% endhighlight %}
+<div class="caption">The baseline network for MNIST.</div><br/>
+
 ## I. Softmax Attention on Weight Matrix
 
 The first thing we tried was soft attention over a weight matrix. That averaged result was then converted into a probability vector via another softmax. It was easily implemented using the built-in components of most neural network libraries. It performed much worse than a baseline network.
+
+{% highlight python lineanchors %}
+tn.HyperparameterNode(
+    "model",
+    tn.SequentialNode(
+        "seq",
+        [tn.InputNode("x", shape=(None, 28 * 28)),
+         tn.DenseNode("fc1"),
+         tn.ReLUNode("relu1"),
+         tn.DropoutNode("do1"),
+         tn.DenseNode("fc2"),
+         tn.ReLUNode("relu2"),
+         tn.DropoutNode("do2"),
+         # ONLY DIFFERENCE: replace ReLU with softmax
+         tn.SoftmaxNode("soft_attention"),
+         tn.DenseNode("fc3", num_units=10),
+         tn.SoftmaxNode("pred")]),
+    num_units=512,
+    dropout_probability=0.5,
+    inits=[treeano.inits.XavierNormalInit()])
+{% endhighlight %}
+<div class="caption">The modified network with softmax attention - an extremely simple one line change. This converts activations into probabilities over the rows of the weight matrix of fc3.</div><br/>
 
 
 ## II. 2-Step Optimization
@@ -92,6 +134,16 @@ We then implemented a differentiable decision tree module that inputs probabilit
 
 We implemented it once in Theano ([source](https://github.com/diogo149/treeano/blob/92fb0279b9693072a7c6f35d1896991eecfcb787/treeano/sandbox/nodes/dNDF.py#L100-L145)), which was very easy but not very efficient and took very long to compile for large trees and once as a custom Op in numpy ([source](https://github.com/diogo149/treeano/blob/92fb0279b9693072a7c6f35d1896991eecfcb787/treeano/theano_extensions/tree_probability.py)).
 
+{% highlight python lineanchors %}
+# iterate over all splits in the tree, pre-calculated
+# by left and right boundaries
+for idx, (l, m, r) in enumerate(tree):
+  # multiply left subtree nodes by probability of going left
+  res[:, l:m] *= probabilities[:, idx, np.newaxis]
+  # do the same for nodes in the right subtree
+  res[:, m:r] *= (1 - probabilities)[:, idx, np.newaxis]
+{% endhighlight %}
+<div class="caption">The core loop for the Numpy implementation of the neural decision tree.</div><br/>
 
 We had some issues getting this model to train effectively. Some things we found were that:
 
@@ -108,6 +160,26 @@ The model successfully trained with this combination of tricks. However, neither
 The final trick mentioned in the paper that we hadn’t yet implemented (at least approximately) was multiple trees and randomly sampling which tree to optimize. We used 10 output layers for this part and applied it to both the softmax and the tree models.
 
 We implemented this by making the softmax and decision tree modules polymorphic to higher dimensional tensors, adding an additional dimension in the network representing which output layer is being used, and then either sampling one of the output layers to optimize at train time or taking the average of the predictions at test time.
+
+{% highlight python lineanchors %}
+# create activations for 10 trees
+# each with 63 split nodes (thus 64 leaves)
+tn.DenseNode("fc2", num_units=63 * 10),
+# convert activation into split probability
+tn.SigmoidNode("sigmoid"),
+# reshape to rank 3 tensor
+tn.ReshapeNode("reshape", shape=(500, 63, 10)),
+# convert split probability to leaf probability along axis 1
+dNDF.SplitProbabilitiesToLeafProbabilitiesNode("tree"),
+# swap axes so that ensemble axis is axis 1
+tn.SwapAxesNode("sa", axes=(1, 2)),
+# apply soft attention over probability vectors
+dNDF.ProbabilityLinearCombinationNode("to_probs", num_units=10),
+# at train time, select a single tree
+dNDF.SelectOneAlongAxisNode("s1", axis=1),
+{% endhighlight %}
+<div class="caption">The changes to the neural network layers to implement a dNDF.</div><br/>
+
 
 For both softmax attention and tree attention with 2-step optimization, this similarly did as good as the baseline model. Without 2-step optimization though, this caused significantly worse performance, possibly because the output layers are optimized 1/10th as much.
 
