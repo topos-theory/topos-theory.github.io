@@ -130,11 +130,10 @@ We implemented it once in Theano ([source](https://github.com/diogo149/treeano/b
 
 {% highlight python lineanchors %}
 # iterate over all splits in the tree, pre-calculated
-# by left and right boundaries
+# by left and right boundaries, and  multiply left subtree
+# nodes by probability of going left (and likewise for right)
 for idx, (l, m, r) in enumerate(tree):
-  # multiply left subtree nodes by probability of going left
   res[:, l:m] *= probabilities[:, idx, np.newaxis]
-  # do the same for nodes in the right subtree
   res[:, m:r] *= (1 - probabilities)[:, idx, np.newaxis]
 {% endhighlight %}
 <div class="caption">The core loop for the Numpy implementation of the neural decision tree.</div><br/>
