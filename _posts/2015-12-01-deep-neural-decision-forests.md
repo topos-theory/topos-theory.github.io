@@ -10,6 +10,21 @@ tags: ["reading group", "deep learning"]
 
 _Diogo Almeida, Nate Sauder, Sasha Targ, Vrushank Vora_
 
+**Table of Contents**
+
+- [Introduction](#)
+- [Summary](#)
+- [Top Thoughts](#)
+- [MNIST Experiments](#)
+	- [I. Softmax Attention on Weight Matrix](#)
+	- [II. 2-Step Optimization](#)
+	- [III. Softmax Attention on Probability Matrix](#)
+	- [IV. Tree Attention on Probability Matrix](#)
+	- [V. In-network Ensembling](#)
+	- [VI. Conclusions](#)
+- [CIFAR Experiments](#)
+- [And More](#)
+
 # Introduction
 
 Reading groups have great potential to interactively identify new research directions; however, in practice, common failure modes include too much lecturing, participants without adequate preparatory reading, and discussions that, while stimulating, raise many questions without answering them.

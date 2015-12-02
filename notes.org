@@ -8,9 +8,8 @@
     - see http://jekyllrb.com/docs/posts/
   - why: makes it easier to iterate locally
     - ie. to see images locally
-* TODOs
-- consider http://doctoc.herokuapp.com/ for table of contents
 * resources
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 - http://www.tablesgenerator.com/markdown_tables
   - to generate markdown tables
+- http://doctoc.herokuapp.com/ for table of contents
