@@ -45,7 +45,7 @@ The function spaces of neural networks and decision trees are quite different: t
 
 * The output of a deep NDF is the weighted sum of each probability vector $$\pi_i$$ with its routing probability
 
-As such, the network output is a form of soft attention over a constant (but optimized) set of probability vectors where that attention happens to be computed with a tree. The $$d_i$$ are trained using regular gradient descent while the optimal probability vectors can be solved using convex optimization before each epoch.
+As such, the network output is a form of soft attention[^soft-attention] over a constant (but optimized) set of probability vectors where that attention happens to be computed with a tree. The $$d_i$$ are trained using regular gradient descent while the optimal probability vectors can be solved using convex optimization before each epoch.
 
 # Top Thoughts
 
@@ -75,7 +75,9 @@ tn.HyperparameterNode(
     dropout_probability=0.5,
     inits=[treeano.inits.XavierNormalInit()])
 {% endhighlight %}
-<div class="caption">The baseline network for MNIST.</div><br/>
+<div markdown="1" class="caption">
+The baseline network for MNIST. [^baseline-network]
+</div><br/>
 
 ## I. Softmax Attention on Weight Matrix
 
@@ -140,11 +142,11 @@ for idx, (l, m, r) in enumerate(tree):
 
 We had some issues getting this model to train effectively. Some things we found were that:
 
-1) learning rate needed to be increased from Adam’s default
+1. The model was more sensitive to learning rate, which needed to be increased from Adam’s default
 
-2) Batch Normalization before the sigmoids for the leaf probabilities helped
+2. Batch Normalization before the sigmoids for the leaf probabilities helped
 
-3) Dropout before the tree seemed harmful
+3. Dropout before the tree seemed harmful
 
 The model successfully trained with this combination of tricks. However, neither standard SGD or the 2-step optimization improved upon the baseline.
 
@@ -186,7 +188,7 @@ Based on these experiments alone though, none of these tricks (without any tunin
 
 We next decided to test both softmax and tree attention on CIFAR-10 and CIFAR-100.
 
-We found that with the deeper network (8-layers) used, both types of attention led the network not to train. Using Batch Normalization throughout the network and increasing the learning rate solved that issue.
+We found that with the deeper network (8-layers)[^dngo-arch] used, both types of attention led the network not to train. Using Batch Normalization throughout the network and increasing the learning rate solved that issue.
 
 On CIFAR-10, both types of attention performed worse than a baseline network with Batch Normalization:
 
@@ -201,3 +203,9 @@ One hypothesis for why the tree was so effective on the ImageNet dataset is that
 # And More
 
 Since this was generated collaboratively, we also have a document outlining questions, answers, explanations, references, thoughts, and more [here](https://docs.google.com/document/d/1-I6rlGdPlQ6cYYd6t07zRNtiW6KUk2UpVhv7-vM-21M/edit?usp=sharing). Feel free to comment on it.
+
+[^soft-attention]: Soft attention can be seen as either an intelligent weighted average, or treating the decision trees stochastically and taking the expected $$\pi$$ vector. See [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/abs/1409.0473) for more.
+
+[^baseline-network]: Our experiments were done using a library called [Treeano](https://github.com/diogo149/treeano).
+
+[^dngo-arch]: The architecture was based on the one from [Scalable Bayesian Optimization Using Deep Neural Networks](http://arxiv.org/abs/1502.05700).
