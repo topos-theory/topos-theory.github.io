@@ -12,7 +12,7 @@ _Diogo Almeida, Nate Sauder, Sasha Targ, Vrushank Vora_
 
 **Table of Contents**
 
-- [Introduction](#introduction)
+- [About This Post](#about-this-post)
 - [Summary](#summary)
 - [Top Thoughts](#top-thoughts)
 - [MNIST Experiments](#mnist-experiments)
@@ -25,15 +25,9 @@ _Diogo Almeida, Nate Sauder, Sasha Targ, Vrushank Vora_
 - [CIFAR Experiments](#cifar-experiments)
 - [And More](#and-more)
 
-# Introduction
+# About This Post
 
-Reading groups have great potential to interactively identify new research directions; however, in practice, common failure modes include too much lecturing, participants without adequate preparatory reading, and discussions that, while stimulating, raise many questions without answering them.
-
-The goal of the deep learning reading group is to discover an optimal structure for reading groups and to provide a venue for discussion and creation of new work in areas related to deep learning. We seek to be thoughtful about every aspect of our reading group and iteratively discover/measure/optimize the parameters of its success.
-
-To that end, going forward, every reading group session will produce output in the form of a blog post as well as implementations of the paper and proposed extensions. Subsequent reading groups have a section devoted to reviewing these experimental results, yielding the added benefit of regular spaced recall of prior material. Our reading group is composed of a diverse group of members with backgrounds in physics, biology, and software to complement expertise in deep learning, facilitating crossover of ideas from other fields.
-
-Please email info@topos.house if you are interested in cutting-edge optimization of DL algorithms and reading groups :)
+The following blog post was the collaborative output of the Topos DL reading group. We seek to be thoughtful about every aspect of our reading group and iteratively discover/measure/optimize the parameters of its success. More is written [here](TODO) about what we have learnt. Please email <a href="mailto:info@topos.house?Subject=Reading%20Group" target="_top">info@topos.house</a> if you are interested in cutting edge optimization of DL algorithms and reading groups. (:
 
 # Summary
 
