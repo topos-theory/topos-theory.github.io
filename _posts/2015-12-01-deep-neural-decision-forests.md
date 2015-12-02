@@ -117,3 +117,7 @@ On CIFAR-10, both types of attention performed worse than a baseline network wit
 | Tree Attention    | 89.84        |
 
 One hypothesis for why the tree was so effective on the ImageNet dataset is that the highly hierarchical label space lends itself well to trees, which doesn’t seem important for 10-class classification problems such as MNIST and CIFAR-10. We are thus running some models on CIFAR-100, and initial results seem somewhat promising for trees (significantly outperforming softmax attention but underperforming relative to a baseline). We will update this part when our models are done training.
+
+# And More
+
+Since this was generated collaboratively, we also have a document outlining questions, answers, explanations, references, thoughts, and more [here](https://docs.google.com/document/d/1-I6rlGdPlQ6cYYd6t07zRNtiW6KUk2UpVhv7-vM-21M/edit?usp=sharing). Feel free to comment on it.
