@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "Reading Group: Deep Neural Decision Forests"
-date:       2015-12-01
-summary:    Thoughts and experiments on dNDF
+date:       2015-12-02
+summary:    Thoughts and experiments on dNDFs
 permalink:  /deep-neural-decision-forests/
 categories: ["reading group"]
 tags: ["reading group", "deep learning"]
@@ -27,7 +27,7 @@ _Diogo Almeida, Nate Sauder, Sasha Targ, Vrushank Vora_
 
 # About This Post
 
-The following blog post was the collaborative output of the Topos DL reading group. We seek to be thoughtful about every aspect of our reading group and iteratively discover/measure/optimize the parameters of its success. More is written [here](TODO) about what we have learnt. Please email <a href="mailto:info@topos.house?Subject=Reading%20Group" target="_top">info@topos.house</a> if you are interested in cutting edge optimization of DL algorithms and reading groups. (:
+The following blog post was the collaborative output of the our DL reading group. We seek to be thoughtful about every aspect of our reading group and iteratively discover/measure/optimize the parameters of its success. More is written [here](/towards-a-better-reading-group/) about what we have learnt. Please email <a href="mailto:info@topos.house?Subject=Reading%20Group" target="_top">info@topos.house</a> if you are interested in cutting edge optimization of DL algorithms and reading groups. (:
 
 # Summary
 
