@@ -39,7 +39,7 @@ The function spaces of neural networks and decision trees are quite different: t
 
 * $$d_n(x; \theta) = \sigma(f_n(x; \theta)) = P(1_{l \leftarrow n})$$ ![dNDF Activation to Probability](/assets/dndf-activation-to-probability.png)
 
-* Each leaf is associated with a probability vector over the classes, e.g. {cat : 0.84, dog : 0.06, bird : 0.10} ![dNDF Probability Vector](/assets/dndf-probability-vector.png)
+* Each leaf is associated with a probability vector $$\pi_i$$ over the classes, e.g. {cat : 0.84, dog : 0.06, bird : 0.10} ![dNDF Probability Vector](/assets/dndf-probability-vector.png)
 
 * The probability of a leaf node is the product of the (routing) probabilities of taking each left/right choice
 
