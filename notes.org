@@ -1,0 +1,16 @@
+* notes to self
+- use run.sh to download dependencies with bundler and run a local instance
+  ./run.sh
+- there is an example with markdown in _drafts/2014-06-10-see-pixyll-in-action.md
+- put custom css in css/custom.css
+- skipping the {{ site.url }} variable
+  - assuming that site will only ever be displayed at the root URL of the domain
+    - see http://jekyllrb.com/docs/posts/
+  - why: makes it easier to iterate locally
+    - ie. to see images locally
+* TODOs
+- consider http://doctoc.herokuapp.com/ for table of contents
+* resources
+- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+- http://www.tablesgenerator.com/markdown_tables
+  - to generate markdown tables
