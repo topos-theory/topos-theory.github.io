@@ -45,7 +45,7 @@ The function spaces of neural networks and decision trees are quite different: t
 
 * The output of a deep NDF is the weighted sum of each probability vector $$\pi_i$$ with its routing probability
 
-As such, the network output is a soft attention over a constant set of probability vectors where that attention happens to be computed with a tree. The $$d_i$$ are trained using regular gradient descent while the optimal probability vectors can be solved using convex optimization before each epoch.
+As such, the network output is a form of soft attention over a constant (but optimized) set of probability vectors where that attention happens to be computed with a tree. The $$d_i$$ are trained using regular gradient descent while the optimal probability vectors can be solved using convex optimization before each epoch.
 
 # Top Thoughts
 
