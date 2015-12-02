@@ -12,18 +12,18 @@ _Diogo Almeida, Nate Sauder, Sasha Targ, Vrushank Vora_
 
 **Table of Contents**
 
-- [Introduction](#)
-- [Summary](#)
-- [Top Thoughts](#)
-- [MNIST Experiments](#)
-	- [I. Softmax Attention on Weight Matrix](#)
-	- [II. 2-Step Optimization](#)
-	- [III. Softmax Attention on Probability Matrix](#)
-	- [IV. Tree Attention on Probability Matrix](#)
-	- [V. In-network Ensembling](#)
-	- [VI. Conclusions](#)
-- [CIFAR Experiments](#)
-- [And More](#)
+- [Introduction](#introduction)
+- [Summary](#summary)
+- [Top Thoughts](#top-thoughts)
+- [MNIST Experiments](#mnist-experiments)
+	- [I. Softmax Attention on Weight Matrix](#i-softmax-attention-on-weight-matrix)
+	- [II. 2-Step Optimization](#ii-2-step-optimization)
+	- [III. Softmax Attention on Probability Matrix](#iii-softmax-attention-on-probability-matrix)
+	- [IV. Tree Attention on Probability Matrix](#iv-tree-attention-on-probability-matrix)
+	- [V. In-network Ensembling](#v-in-network-ensembling)
+	- [VI. Conclusions](#vi-conclusions)
+- [CIFAR Experiments](#cifar-experiments)
+- [And More](#and-more)
 
 # Introduction
 
