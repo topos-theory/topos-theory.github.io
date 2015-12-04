@@ -8,6 +8,7 @@
     - see http://jekyllrb.com/docs/posts/
   - why: makes it easier to iterate locally
     - ie. to see images locally
+- add a markdown="1" attribute to an HTML element to have the insides be markdown
 * resources
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 - http://www.tablesgenerator.com/markdown_tables
