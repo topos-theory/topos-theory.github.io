@@ -220,4 +220,4 @@ Since this was generated collaboratively, we also have a document outlining ques
 
 [^dngo-arch]: The architecture was based on the one from [Scalable Bayesian Optimization Using Deep Neural Networks](http://arxiv.org/abs/1502.05700).
 
-[^tree-embedding] Note that the size of the tree embeddings had to be a power of 2 minus 1, because the binary tree is balanced.
+[^tree-embedding]: Note that the size of the tree embeddings had to be a power of 2 minus 1, because the binary tree is balanced.
