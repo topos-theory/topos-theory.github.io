@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Reading Group: Deep Neural Decision Forests"
-date:       2015-12-02
+date:       2015-12-07
 summary:    Thoughts and experiments on dNDFs
 permalink:  /deep-neural-decision-forests/
 categories: ["reading group"]
@@ -198,7 +198,17 @@ On CIFAR-10, both types of attention performed worse than a baseline network wit
 | Softmax Attention | 89.91        |
 | Tree Attention    | 89.84        |
 
-One hypothesis for why the tree was so effective on the ImageNet dataset is that the highly hierarchical label space lends itself well to trees, which doesn’t seem important for 10-class classification problems such as MNIST and CIFAR-10. We are thus running some models on CIFAR-100, and initial results seem somewhat promising for trees (significantly outperforming softmax attention but underperforming relative to a baseline). We will update this part when our models are done training.
+One hypothesis for why the tree was so effective on the ImageNet dataset is that the highly hierarchical label space lends itself well to trees, which doesn’t seem important for 10-class classification problems such as MNIST and CIFAR-10. We thus tried running some models on CIFAR-100, though this led to similarly unpromising results:
+
+| Model                                   | Accuracy (%) |
+|-----------------------------------------+--------------|
+| Baseline (embedding size=192)           |        62.50 |
+| Softmax Attention (embedding size=192)  |        26.21 |
+| Softmax Attention (embedding size=2047) |        55.02 |
+| Tree Attention (embedding size=127)     |        47.68 |
+| Tree Attention (embedding size=2047)    |        52.84 |
+
+Tree attention seemed initially promising compared to using a softmax for smaller embedding sizes[^tree-embedding], but for a larger embedding size, that benefit was no longer observed, and performance did not reach that of the baseline.
 
 # And More
 
@@ -209,3 +219,5 @@ Since this was generated collaboratively, we also have a document outlining ques
 [^baseline-network]: Our experiments were done using a library called [Treeano](https://github.com/diogo149/treeano).
 
 [^dngo-arch]: The architecture was based on the one from [Scalable Bayesian Optimization Using Deep Neural Networks](http://arxiv.org/abs/1502.05700).
+
+[^tree-embedding] Note that the size of the tree embeddings had to be a power of 2 minus 1, because the binary tree is balanced.
