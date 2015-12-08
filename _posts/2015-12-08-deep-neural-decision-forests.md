@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Reading Group: Deep Neural Decision Forests"
-date:       2015-12-07
+date:       2015-12-08
 summary:    Thoughts and experiments on dNDFs
 permalink:  /deep-neural-decision-forests/
 categories: ["reading group"]
