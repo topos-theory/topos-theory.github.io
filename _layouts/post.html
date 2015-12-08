@@ -9,6 +9,9 @@ layout: default
 
 <div class="post-header mb2">
   <h1>{{ page.title }}</h1>
+  {% if page.subtitle %}
+  <div style="font-size:1.5rem;"><em>{{ page.subtitle }}</em></div>
+  {% endif %}
   <span class="post-meta">{{ page.date | date: site.date_format }}</span><br>
   {% if page.update_date %}
     <span class="post-meta">Updated: {{ page.update_date | date: site.date_format }}</span><br>
